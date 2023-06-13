@@ -3,6 +3,8 @@ package com.formacionbdi.springboot.app.item.controller;
 import com.formacionbdi.springboot.app.item.model.Item;
 import com.formacionbdi.springboot.app.item.model.Producto;
 import com.formacionbdi.springboot.app.item.service.ItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -13,7 +15,11 @@ import java.util.List;
 @RestController
 public class ItemController {
 
+    private final Logger logger = LoggerFactory.getLogger(ItemController.class);
+
+    @Autowired
     private CircuitBreakerFactory cbFactory;
+
 
     @Autowired
     @Qualifier("serviceFeign")
@@ -29,10 +35,11 @@ public class ItemController {
     @GetMapping("/ver/{id}/cantidad/{cantidad}")
     public Item detalle(@PathVariable Long id, @PathVariable Integer cantidad){
         return cbFactory.create("items")
-                .run(() -> itemService.findById(id, cantidad), e -> metodoAlternativo(id, cantidad));
+                .run(() -> itemService.findById(id, cantidad), e -> metodoAlternativo(id, cantidad, e));
     }
 
-    public Item metodoAlternativo(Long id, Integer cantidad){
+    public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
+        logger.info(e.getMessage());
         Item item = new Item();
         Producto producto = new Producto();
 
