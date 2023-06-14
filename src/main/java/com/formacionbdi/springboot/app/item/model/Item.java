@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {
+
     private Producto producto;
     private Integer cantidad;
 

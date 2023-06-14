@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class ItemController {
     private ItemService itemService;
 
     @GetMapping("/listar")
-    public List<Item> listar(@RequestParam(name = "nombre", required = false)String nombre, @RequestHeader(name = "token-request", required = false)String token){
+    public List<Item> listar(@RequestParam(name="nombre", required=false) String nombre, @RequestHeader(name ="token-request", required = false) String token){
         System.out.println(nombre);
         System.out.println(token);
         return itemService.findAll();
@@ -35,7 +36,7 @@ public class ItemController {
     @GetMapping("/ver/{id}/cantidad/{cantidad}")
     public Item detalle(@PathVariable Long id, @PathVariable Integer cantidad){
         return cbFactory.create("items")
-                .run(() -> itemService.findById(id, cantidad), e -> metodoAlternativo(id, cantidad, e));
+                .run(()-> itemService.findById(id, cantidad) /*, e -> metodoAlternativo(id, cantidad, e)*/);
     }
 
     public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
