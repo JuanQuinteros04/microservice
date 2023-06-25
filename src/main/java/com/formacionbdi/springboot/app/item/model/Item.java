@@ -1,5 +1,6 @@
 package com.formacionbdi.springboot.app.item.model;
 
+import com.formacionbdi.springboot.app.commons.model.entity.Producto;
 import lombok.*;
 
 @Getter

@@ -2,10 +2,10 @@ package com.formacionbdi.springboot.app.item.service;
 
 import com.formacionbdi.springboot.app.item.clientes.ProductoClienteRest;
 import com.formacionbdi.springboot.app.item.model.Item;
-import com.formacionbdi.springboot.app.item.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import com.formacionbdi.springboot.app.commons.model.entity.Producto;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,16 +28,16 @@ public class ItemServiceFeign implements ItemService{
 
     @Override
     public Producto save(Producto producto) {
-        return null;
+        return clienteFeign.crear(producto);
     }
 
     @Override
     public Producto update(Producto producto, Long id) {
-        return null;
+        return clienteFeign.update(producto, id);
     }
 
     @Override
     public void delete(Long id) {
-
+        clienteFeign.delete(id);
     }
 }

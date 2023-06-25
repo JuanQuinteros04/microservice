@@ -1,7 +1,6 @@
 package com.formacionbdi.springboot.app.item.controller;
 
 import com.formacionbdi.springboot.app.item.model.Item;
-import com.formacionbdi.springboot.app.item.model.Producto;
 import com.formacionbdi.springboot.app.item.service.ItemService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
@@ -18,6 +17,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.formacionbdi.springboot.app.commons.model.entity.Producto;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;

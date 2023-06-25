@@ -1,9 +1,11 @@
 package com.formacionbdi.springboot.app.item.service;
 
 import com.formacionbdi.springboot.app.item.model.Item;
-import com.formacionbdi.springboot.app.item.model.Producto;
 
 import java.util.List;
+
+import com.formacionbdi.springboot.app.commons.model.entity.Producto;
+
 
 public interface ItemService {
     public List<Item> findAll();

@@ -1,13 +1,16 @@
 package com.formacionbdi.springboot.app.item.service;
 
+
 import com.formacionbdi.springboot.app.item.model.Item;
-import com.formacionbdi.springboot.app.item.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.formacionbdi.springboot.app.commons.model.entity.Producto;
+
 
 import java.util.Arrays;
 import java.util.HashMap;
